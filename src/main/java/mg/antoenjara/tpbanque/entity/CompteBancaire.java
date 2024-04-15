@@ -69,5 +69,26 @@ public class CompteBancaire implements Serializable {
     public String toString() {
         return "mg.antoenjara.tpbanque.entity.CompteBancaire[ id=" + id + " ]";
     }
+    
+    public CompteBancaire() {
+      
+    }
+
+    public CompteBancaire(String nom, int solde) {
+        this.nom = nom;
+        this.solde = solde;
+    }
+
+    public void deposer(int montant) {
+        solde += montant;
+    }
+
+    public void retirer(int montant) {
+        if (montant < solde) {
+            solde -= montant;
+        } else {
+            solde = 0;
+        }
+    }
 
 }
