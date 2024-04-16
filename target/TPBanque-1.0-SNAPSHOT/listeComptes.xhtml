@@ -16,46 +16,45 @@
 
             <ui:define name="content">
                 <h:form>
-                    
-                    <!--<p:dataTable value="#{listeComptes.allComptes}" var="item"
-                                 tableStyle="width:auto" >-->
-                        <p:dataTable value="#{listeComptes.allComptes}" var="item" 
-                                     widgetVar="CompteTable"
-                                     emptyMessage="Aucun Compte avec ce critère"
-                                     paginator="true" rows="10" rowsPerPageTemplate="2,4,8,10"
-                                     paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                                     >
-                            <p:column width="auto"  sortBy="#{item.id}">
-                                <!--<f:facet name="header">
-                                    <h:outputText value="Id"/>
-                                </f:facet>
-                                <h:outputText value="#{item.id}"/>-->
-                                <f:facet name="header">
-                                    <h:outputText value="Id"/>
-                                </f:facet>
-                                <h:outputText value="#{item.id}"/>
-                            </p:column>
 
-                            <p:column width="auto" filterBy="#{item.nom}" sortBy="#{item.nom}">
-                                <!--<f:facet name="header">
-                                    <h:outputText value="Nom"/>
-                                </f:facet>
-                                <h:outputText value="#{item.nom}"/>-->
-                                 <f:facet name="header">
-                                    <h:outputText value="Nom"/>
-                                </f:facet>
-                                <h:outputText value="#{item.nom}"/>
-                            </p:column>
-                            <p:column style="text-align:right;" width="auto" filterBy="#{item.solde}" filterFunction="#{listeComptes.filterBySolde}" sortBy="#{item.solde}">
-                                <f:facet name="header">
-                                    <h:outputText value="Solde"/>
-                                </f:facet>
-                                <h:outputText value="#{item.solde}">
-                                    <f:convertNumber pattern="###,###,##0"/>
-                                </h:outputText>
-                            </p:column>
-                        </p:dataTable>
-                    
+<!--<p:dataTable value="#{listeComptes.allComptes}" var="item"
+             tableStyle="width:auto" >-->
+                    <p:dataTable value="#{listeComptes.allComptes}" var="item" 
+                                 emptyMessage="Aucun Compte avec ce critère"
+                                 paginator="true" rows="10" rowsPerPageTemplate="2,4,8,10"
+                                 paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                 >
+                        <p:column width="auto"  sortBy="#{item.id}">
+                            <f:facet name="header">
+                                <h:outputText value="Id"/>
+                            </f:facet>
+                            <h:panelGroup rendered="#{not empty item.id}">
+                                <h:link outcome="detailCompte?idCompte=#{item.id}" 
+                                        value="#{item.id}"/>
+                            </h:panelGroup>
+                        </p:column>
+
+
+                        <p:column width="auto" filterBy="#{item.nom}" sortBy="#{item.nom}">
+                            <!--<f:facet name="header">
+                                <h:outputText value="Nom"/>
+                            </f:facet>
+                            <h:outputText value="#{item.nom}"/>-->
+                            <f:facet name="header">
+                                <h:outputText value="Nom"/>
+                            </f:facet>
+                            <h:outputText value="#{item.nom}"/>
+                        </p:column>
+                        <p:column style="text-align:right;" width="auto" filterBy="#{item.solde}" filterFunction="#{listeComptes.filterBySolde}" sortBy="#{item.solde}">
+                            <f:facet name="header">
+                                <h:outputText value="Solde"/>
+                            </f:facet>
+                            <h:outputText value="#{item.solde}">
+                                <f:convertNumber pattern="###,###,##0"/>
+                            </h:outputText>
+                        </p:column>
+                    </p:dataTable>
+
                 </h:form>
 
                 <h:messages/>

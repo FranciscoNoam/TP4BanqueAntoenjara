@@ -4,4 +4,5 @@ mg/antoenjara/tpbanque/config/ConfigJSF.class
 mg/antoenjara/tpbanque/jsf/ListeComptes.class
 mg/antoenjara/tpbanque/config/ConfigCompteJSF.class
 mg/antoenjara/tpbanque/entity/Compte.class
+mg/antoenjara/tpbanque/jsf/detailCompte.class
 mg/antoenjara/tpbanque/JakartaRestConfiguration.class

@@ -8,6 +8,7 @@ import jakarta.annotation.sql.DataSourceDefinition;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.NoResultException;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.TypedQuery;
 import jakarta.transaction.Transactional;
@@ -57,9 +58,27 @@ public class GestionnaireCompte {
         return liste;
     }
 
+    public Compte findById(Long idCompte) {
+    String requete = "SELECT c FROM Compte c" +" WHERE c.id= :compte";
+    TypedQuery<Compte> query = em.createQuery(requete, Compte.class);
+    query.setParameter("compte", idCompte);
+    try {
+        Compte data =  query.getSingleResult();
+        return data;
+    } catch (NoResultException e) {
+        return null;
+    }
+}
+
     @Transactional
     public void creerCompte(Compte c) {
         em.persist(c);
+
+    }
+
+    @Transactional
+    public void modifieCompte(Compte c) {
+        em.merge(c);
 
     }
 
