@@ -13,18 +13,21 @@
             </ui:define>
 
             <ui:define name="content">
-                <h:form > 
+                <h:form id="form"> 
                     <h1><h:outputText value="Saisissez ID du Créditeur"/></h1>
-                    <h:panelGrid columns="1">
+                    <h:panelGrid columns="3">
                         <h:outputLabel value="debiter:" for="debiter" />
-                        <h:inputText id="debiter" value="#{virement.debiter}" title="Débiteur" />
-
+                        <h:inputText id="debiter" value="#{virement.debiter}" title="Débiteur" required="true" converterMessage="L'id est un nombre entier" />
+                        <h:message for="debiter"/>
+                        
                         <h:outputLabel value="crediter:" for="crediter" />
-                        <h:inputText id="crediter" value="#{virement.crediter}" title="Créditeur" />
+                        <h:inputText id="crediter" value="#{virement.crediter}" title="Créditeur" required="true" converterMessage="L'id est un nombre entier"/>
+                         <h:message for="crediter"/>
 
                         <h:outputLabel value="montant:" for="montant" />
-                        <h:inputText id="montant" value="#{virement.montant}" title="Montant" />
-                        
+                        <h:inputText id="montant" value="#{virement.montant}" title="Montant" required="true" converterMessage="Montant est un nombre entier"/>
+                         <h:message for="montant"/>
+
                         <h:commandButton id="virement" value="Valider le virement" action="#{virement.virementSolde}"/>·
                     </h:panelGrid>
                     <h:messages/>

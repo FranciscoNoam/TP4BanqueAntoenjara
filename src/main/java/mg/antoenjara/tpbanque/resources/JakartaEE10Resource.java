@@ -18,3 +18,4 @@ public class JakartaEE10Resource {
                 .build();
     }
 }
+
