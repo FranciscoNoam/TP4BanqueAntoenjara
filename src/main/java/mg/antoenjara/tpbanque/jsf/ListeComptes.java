@@ -8,6 +8,7 @@ import jakarta.inject.Named;
 import jakarta.enterprise.context.Dependent;
 import jakarta.inject.Inject;
 import java.util.List;
+import java.util.Locale;
 import mg.antoenjara.tpbanque.entity.Compte;
 import mg.antoenjara.tpbanque.service.GestionnaireCompte;
 
@@ -19,22 +20,39 @@ import mg.antoenjara.tpbanque.service.GestionnaireCompte;
 @Dependent
 public class ListeComptes {
 
-      private List<Compte> customerList;  
+    private List<Compte> customerList;
 
-  @Inject
-  private GestionnaireCompte comptebancaireManager;  
-        
-   
-  /** 
-   * Retourne la liste des clients pour affichage dans une DataTable.
-   */  
-  public List<Compte> getAllComptes() {
-    if (customerList == null) {
-      customerList = comptebancaireManager.getAllComptes();
+    @Inject
+    private GestionnaireCompte comptebancaireManager;
+
+    /**
+     * Retourne la liste des clients pour affichage dans une DataTable.
+     */
+    public List<Compte> getAllComptes() {
+        if (customerList == null) {
+            customerList = comptebancaireManager.getAllComptes();
+        }
+        return customerList;
     }
-    return customerList;
-  } 
+
+    public boolean filterBySolde(Object value, Object filter, Locale locale) {
+
+        if (filter == null || filter.toString().isEmpty()) {
+            return true; // Pas de filtre, donc tous les éléments sont affichés
+        }
+
+        if (value == null) {
+            return false; // Élément vide, donc on ne l'affiche pas
+        }
+
+        double soldeValue = ((Number) value).longValue();
+        double filterValue = Long.parseLong(filter.toString());
+
+        // Filtre pour les soldes supérieurs ou égaux à la valeur saisie
+        return soldeValue >= filterValue;
+    }
+
     public ListeComptes() {
     }
-    
+
 }

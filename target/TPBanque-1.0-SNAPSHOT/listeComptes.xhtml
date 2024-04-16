@@ -16,31 +16,46 @@
 
             <ui:define name="content">
                 <h:form>
-                    <p:panelGrid  id="forautowidth" columns="1">
-                    <p:dataTable value="#{listeComptes.allComptes}" var="item"
-                                 tableStyle="width:auto" >
-                        <p:column width="40">
-                            <f:facet name="header">
-                                <h:outputText value="Id"/>
-                            </f:facet>
-                            <h:outputText value="#{item.id}"/>
-                        </p:column>
-                        <p:column width="200">
-                            <f:facet name="header">
-                                <h:outputText value="Nom"/>
-                            </f:facet>
-                            <h:outputText value="#{item.nom}"/>
-                        </p:column>
-                        <p:column style="text-align:right;" width="60">
-                            <f:facet name="header">
-                                <h:outputText value="Solde"/>
-                            </f:facet>
-                            <h:outputText value="#{item.solde}">
-                                <f:convertNumber pattern="###,###,##0"/>
-                            </h:outputText>
-                        </p:column>
-                    </p:dataTable>
-</p:panelGrid>
+                    
+                    <!--<p:dataTable value="#{listeComptes.allComptes}" var="item"
+                                 tableStyle="width:auto" >-->
+                        <p:dataTable value="#{listeComptes.allComptes}" var="item" 
+                                     widgetVar="CompteTable"
+                                     emptyMessage="Aucun Compte avec ce critère"
+                                     paginator="true" rows="10" rowsPerPageTemplate="2,4,8,10"
+                                     paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                     >
+                            <p:column width="auto"  sortBy="#{item.id}">
+                                <!--<f:facet name="header">
+                                    <h:outputText value="Id"/>
+                                </f:facet>
+                                <h:outputText value="#{item.id}"/>-->
+                                <f:facet name="header">
+                                    <h:outputText value="Id"/>
+                                </f:facet>
+                                <h:outputText value="#{item.id}"/>
+                            </p:column>
+
+                            <p:column width="auto" filterBy="#{item.nom}" sortBy="#{item.nom}">
+                                <!--<f:facet name="header">
+                                    <h:outputText value="Nom"/>
+                                </f:facet>
+                                <h:outputText value="#{item.nom}"/>-->
+                                 <f:facet name="header">
+                                    <h:outputText value="Nom"/>
+                                </f:facet>
+                                <h:outputText value="#{item.nom}"/>
+                            </p:column>
+                            <p:column style="text-align:right;" width="auto" filterBy="#{item.solde}" filterFunction="#{listeComptes.filterBySolde}" sortBy="#{item.solde}">
+                                <f:facet name="header">
+                                    <h:outputText value="Solde"/>
+                                </f:facet>
+                                <h:outputText value="#{item.solde}">
+                                    <f:convertNumber pattern="###,###,##0"/>
+                                </h:outputText>
+                            </p:column>
+                        </p:dataTable>
+                    
                 </h:form>
 
                 <h:messages/>
