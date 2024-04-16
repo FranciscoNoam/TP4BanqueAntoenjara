@@ -29,17 +29,13 @@
                                 <h:outputText value="Id"/>
                             </f:facet>
                             <h:panelGroup rendered="#{not empty item.id}">
-                                <h:link outcome="detailCompte?idCompte=#{item.id}" 
+                                <h:link outcome="transaction?idCompte=#{item.id}" 
                                         value="#{item.id}"/>
                             </h:panelGroup>
                         </p:column>
 
 
                         <p:column width="auto" filterBy="#{item.nom}" sortBy="#{item.nom}">
-                            <!--<f:facet name="header">
-                                <h:outputText value="Nom"/>
-                            </f:facet>
-                            <h:outputText value="#{item.nom}"/>-->
                             <f:facet name="header">
                                 <h:outputText value="Nom"/>
                             </f:facet>

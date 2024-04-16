@@ -1,11 +1,12 @@
-mg/antoenjara/tpbanque/resources/JakartaEE10Resource.class
 mg/antoenjara/tpbanque/service/GestionnaireCompte.class
 mg/antoenjara/tpbanque/config/ConfigJSF.class
 mg/antoenjara/tpbanque/jsf/ListeComptes.class
+mg/antoenjara/tpbanque/JakartaRestConfiguration.class
+mg/antoenjara/tpbanque/jsf/AjoutCompte.class
+mg/antoenjara/tpbanque/jsf/Transaction.class
+mg/antoenjara/tpbanque/resources/JakartaEE10Resource.class
 mg/antoenjara/tpbanque/config/ConfigCompteJSF.class
 mg/antoenjara/tpbanque/entity/Compte.class
 mg/antoenjara/tpbanque/jsf/util/Util.class
 mg/antoenjara/tpbanque/jsf/detailCompte.class
-mg/antoenjara/tpbanque/JakartaRestConfiguration.class
-mg/antoenjara/tpbanque/jsf/AjoutCompte.class
 mg/antoenjara/tpbanque/jsf/Virement.class
