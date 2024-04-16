@@ -93,5 +93,14 @@ public class GestionnaireCompte {
         //em.remove(c);
          em.remove(em.merge(c));
     }
+    
+     @Transactional
+    public void transfert(Compte debiter, Compte crediter, int montant) {
+        debiter.retirer(montant);
+        crediter.deposer(montant);
+        
+        this.modifieCompte(debiter);
+        this.modifieCompte(crediter);
+    }
 
 }

@@ -18,7 +18,6 @@
             </ui:define>
             
            
-
             <ui:define name="top">
                 Détails du compte
             </ui:define>
@@ -33,7 +32,7 @@
                 <h:messages/>
             </h:form>
             <h:button id="back" value="Annuler" outcome="listeComptes"/>
-            <h:outputText value="Aucun client avec l'id #{detailCompte.selectedItemId} !" rendered='#{detailCompte.selectedItemId == null}'/>
+            <h:outputText value="Aucun Compte avec l'id #{detailCompte.selectedItemId} !" rendered='#{detailCompte.selectedItemId == null}'/>
 
             </ui:define>
 

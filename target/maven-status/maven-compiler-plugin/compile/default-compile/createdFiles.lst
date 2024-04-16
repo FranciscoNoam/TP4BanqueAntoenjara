@@ -6,3 +6,4 @@ mg/antoenjara/tpbanque/config/ConfigCompteJSF.class
 mg/antoenjara/tpbanque/entity/Compte.class
 mg/antoenjara/tpbanque/jsf/detailCompte.class
 mg/antoenjara/tpbanque/JakartaRestConfiguration.class
+mg/antoenjara/tpbanque/jsf/Virement.class

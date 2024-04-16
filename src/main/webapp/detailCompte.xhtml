@@ -25,16 +25,16 @@
 
             <ui:define name="content">
                 <h:form rendered='#{detailCompte.idCompte != null}'> 
-                <h1><h:outputText value="Update nom du compte"/></h1>
-                <h:panelGrid columns="2">
-                    <h:outputLabel value="Nom:" for="nom" />
-                    <h:inputText id="nom" value="#{detailCompte.compte.nom}" title="Nom" />
-                    <h:commandButton id="update" value="Enregistrer" action="#{detailCompte.update}"/>·
-                </h:panelGrid>
-                <h:messages/>
-            </h:form>
+                    <h1><h:outputText value="Update nom du compte"/></h1>
+                    <h:panelGrid columns="2">
+                        <h:outputLabel value="Nom:" for="nom" />
+                        <h:inputText id="nom" value="#{detailCompte.compte.nom}" title="Nom" />
+                        <h:commandButton id="update" value="Enregistrer" action="#{detailCompte.update}"/>
+                    </h:panelGrid>
+                    <h:messages/>
+                </h:form>
             <h:button id="back" value="Revenir à la liste" outcome="listeComptes"/>
-            <h:outputText value="Aucun client avec l'id #{detailCompte.idCompte} !" rendered='#{detailCompte.idCompte == null}'/>
+            <h:outputText value="Aucun Compte avec l'id #{detailCompte.idCompte} !" rendered='#{detailCompte.idCompte == null}'/>
 
             </ui:define>
 

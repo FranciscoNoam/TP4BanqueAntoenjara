@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="jakarta.faces.html">
+
+    <body>
+
+        <ui:composition template="./WEB-INF/templates/template_defaut.xhtml">
+
+            <ui:define name="top">
+                Passer un virement
+            </ui:define>
+
+            <ui:define name="content">
+                <h:form > 
+                    <h1><h:outputText value="Saisissez ID du Créditeur"/></h1>
+                    <h:panelGrid columns="1">
+                        <h:outputLabel value="debiter:" for="debiter" />
+                        <h:inputText id="debiter" value="#{virement.debiter}" title="Débiteur" />
+
+                        <h:outputLabel value="crediter:" for="crediter" />
+                        <h:inputText id="crediter" value="#{virement.crediter}" title="Créditeur" />
+
+                        <h:outputLabel value="montant:" for="montant" />
+                        <h:inputText id="montant" value="#{virement.montant}" title="Montant" />
+                        
+                        <h:commandButton id="virement" value="Valider le virement" action="#{virement.virementSolde}"/>·
+                    </h:panelGrid>
+                    <h:messages/>
+                </h:form>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>
