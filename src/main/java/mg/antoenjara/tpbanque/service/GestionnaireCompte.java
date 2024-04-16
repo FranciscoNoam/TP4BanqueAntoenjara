@@ -12,7 +12,7 @@ import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.TypedQuery;
 import jakarta.transaction.Transactional;
 import java.util.List;
-import mg.antoenjara.tpbanque.entity.CompteBancaire;
+import mg.antoenjara.tpbanque.entity.Compte;
 
 /**
  *
@@ -43,28 +43,28 @@ public class GestionnaireCompte {
     /**
      * Methode pour faire l'insertion d'une customer
      *
-     * @param CompteBancaire
+     * @param Compte
      */
     @Transactional
-    public void persist(CompteBancaire compte) {
+    public void persist(Compte compte) {
         em.persist(compte);
     }
 
-    public List<CompteBancaire> getAllComptes() {
-        String requete = "SELECT c FROM COMPTEBANCAIRE c ";
-        TypedQuery<CompteBancaire> query = em.createQuery(requete, CompteBancaire.class);
-        List<CompteBancaire> liste = query.getResultList();
+    public List<Compte> getAllComptes() {
+        String requete = "SELECT c FROM Compte c ";
+        TypedQuery<Compte> query = em.createQuery(requete, Compte.class);
+        List<Compte> liste = query.getResultList();
         return liste;
     }
 
     @Transactional
-    public void creerCompte(CompteBancaire c) {
+    public void creerCompte(Compte c) {
         em.persist(c);
 
     }
 
     public long nbComptes() {
-        Object data = em.createQuery("SELECT COUNT(c) FROM CompteBancaire c").getSingleResult();
+        Object data = em.createQuery("SELECT COUNT(c) FROM Compte c").getSingleResult();
         long result = (long) data;
         return result;
     }

@@ -7,10 +7,11 @@ package mg.antoenjara.tpbanque.config;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.enterprise.context.Initialized;
 import jakarta.enterprise.event.Observes;
+import jakarta.faces.annotation.FacesConfig;
 import jakarta.inject.Inject;
 import jakarta.servlet.ServletContext;
 import jakarta.transaction.Transactional;
-import mg.antoenjara.tpbanque.entity.CompteBancaire;
+import mg.antoenjara.tpbanque.entity.Compte;
 import mg.antoenjara.tpbanque.service.GestionnaireCompte;
 
 
@@ -18,6 +19,8 @@ import mg.antoenjara.tpbanque.service.GestionnaireCompte;
  *
  * @author francisco
  */
+//@ApplicationScoped
+//@FacesConfig
 public class InitBean {
 
     @Inject
@@ -35,11 +38,11 @@ public class InitBean {
     }
     
     private void createAccounts() {
-        // Créer 4 CompteBancaire
-        compte.creerCompte(new CompteBancaire("John Lennon", 150000));
-        compte.creerCompte(new CompteBancaire("Paul McCartney", 950000));
-        compte.creerCompte(new CompteBancaire("Ringo Starr,", 20000));
-        compte.creerCompte(new CompteBancaire("Georges Harrisson", 100000));
+        // Créer 4 Compte
+        compte.creerCompte(new Compte("John Lennon", 150000));
+        compte.creerCompte(new Compte("Paul McCartney", 950000));
+        compte.creerCompte(new Compte("Ringo Starr,", 20000));
+        compte.creerCompte(new Compte("Georges Harrisson", 100000));
     }
     
   

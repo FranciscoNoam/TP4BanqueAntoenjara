@@ -4,9 +4,6 @@
     <persistence-unit name="banquePU">
         <jta-data-source>java:app/jdbc/banque</jta-data-source>
         <properties>
-            <!--<property name="javax.persistence.jdbc.max-connections" value="10000"/>
-            <property name="javax.persistence.jdbc.min-connections" value="1"/>-->
-
             <property name="jakarta.persistence.schema-generation.database.action" value="create"/>
             <property name="eclipselink.logging.level" value="FINE"/>
         </properties>

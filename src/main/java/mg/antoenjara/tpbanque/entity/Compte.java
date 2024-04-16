@@ -15,7 +15,7 @@ import java.io.Serializable;
  * @author francisco
  */
 @Entity
-public class CompteBancaire implements Serializable {
+public class Compte implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -55,10 +55,10 @@ public class CompteBancaire implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof CompteBancaire)) {
+        if (!(object instanceof Compte)) {
             return false;
         }
-        CompteBancaire other = (CompteBancaire) object;
+        Compte other = (Compte) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -70,11 +70,11 @@ public class CompteBancaire implements Serializable {
         return "mg.antoenjara.tpbanque.entity.CompteBancaire[ id=" + id + " ]";
     }
 
-    public CompteBancaire() {
+    public Compte() {
 
     }
 
-    public CompteBancaire(String nom, int solde) {
+    public Compte(String nom, int solde) {
         this.nom = nom;
         this.solde = solde;
     }
