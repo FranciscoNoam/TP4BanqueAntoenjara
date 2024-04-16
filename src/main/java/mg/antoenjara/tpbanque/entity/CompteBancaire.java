@@ -69,9 +69,9 @@ public class CompteBancaire implements Serializable {
     public String toString() {
         return "mg.antoenjara.tpbanque.entity.CompteBancaire[ id=" + id + " ]";
     }
-    
+
     public CompteBancaire() {
-      
+
     }
 
     public CompteBancaire(String nom, int solde) {
@@ -79,6 +79,7 @@ public class CompteBancaire implements Serializable {
         this.solde = solde;
     }
 
+   
     public void deposer(int montant) {
         solde += montant;
     }

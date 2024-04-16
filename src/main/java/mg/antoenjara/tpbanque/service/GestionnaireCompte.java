@@ -5,6 +5,7 @@
 package mg.antoenjara.tpbanque.service;
 
 import jakarta.annotation.sql.DataSourceDefinition;
+import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
@@ -32,7 +33,8 @@ import mg.antoenjara.tpbanque.entity.CompteBancaire;
         }
 )
 
-@RequestScoped
+//@RequestScoped
+@ApplicationScoped
 public class GestionnaireCompte {
 
     @PersistenceContext(unitName = "banquePU")
@@ -50,7 +52,7 @@ public class GestionnaireCompte {
 
     public List<CompteBancaire> getAllComptes() {
         String requete = "SELECT c FROM COMPTEBANCAIRE c ";
-        TypedQuery<CompteBancaire> query =em.createQuery(requete, CompteBancaire.class); 
+        TypedQuery<CompteBancaire> query = em.createQuery(requete, CompteBancaire.class);
         List<CompteBancaire> liste = query.getResultList();
         return liste;
     }
@@ -59,6 +61,12 @@ public class GestionnaireCompte {
     public void creerCompte(CompteBancaire c) {
         em.persist(c);
 
+    }
+
+    public long nbComptes() {
+        Object data = em.createQuery("SELECT COUNT(c) FROM CompteBancaire c").getSingleResult();
+        long result = (long) data;
+        return result;
     }
 
 }
