@@ -6,6 +6,7 @@
       xmlns:h="jakarta.faces.html"
       xmlns:p="http://primefaces.org/ui">
 
+
     <body>
 
         <ui:composition template="./WEB-INF/templates/template_defaut.xhtml">
@@ -15,10 +16,9 @@
             </ui:define>
 
             <ui:define name="content">
+
                 <h:form>
 
-<!--<p:dataTable value="#{listeComptes.allComptes}" var="item"
-             tableStyle="width:auto" >-->
                     <p:dataTable value="#{listeComptes.allComptes}" var="item" 
                                  emptyMessage="Aucun Compte avec ce critère"
                                  paginator="true" rows="10" rowsPerPageTemplate="2,4,8,10"
@@ -53,6 +53,18 @@
                                 <f:convertNumber pattern="###,###,##0"/>
                             </h:outputText>
                         </p:column>
+                        <p:column style="text-align:right;" width="auto" >
+                            <f:facet name="header">
+                                <h:outputText value="Action"/>
+                            </f:facet>
+
+                            <h:commandLink actionListener="#{listeComptes.redirectToDelete(item.id)}" title="Supprimer le compte de #{item.nom}">
+                                <h:graphicImage height="25" width="25" name="icons/trash.png" />
+                            </h:commandLink>
+                            <h:commandLink action="#{listeComptes.redirectToDetail(item.id)}" title="Modifier le compte de #{item.nom}">
+                                <h:graphicImage height="25" width="25" name="icons/pen.png"  />
+                            </h:commandLink>
+                        </p:column>
                     </p:dataTable>
 
                 </h:form>
@@ -62,7 +74,11 @@
             </ui:define>
 
 
+
         </ui:composition>
 
     </body>
+
+
+
 </html>

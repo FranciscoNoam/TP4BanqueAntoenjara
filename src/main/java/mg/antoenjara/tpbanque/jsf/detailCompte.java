@@ -22,13 +22,20 @@ import mg.antoenjara.tpbanque.service.GestionnaireCompte;
 @ViewScoped
 public class detailCompte implements Serializable {
 
-    
-    //private Long idCompte=Long.parseLong("1");
+    private Long selectedItemId;
     private Long idCompte;
     private Compte compte;
     @Inject
     private GestionnaireCompte comptebancaireManager;
-   
+
+    public Long getSelectedItemId() {
+        return selectedItemId;
+    }
+
+    public void setSelectedItemId(Long selectedItemId) {
+        this.selectedItemId = selectedItemId;
+    }
+
     public Long getIdCompte() {
         return idCompte;
     }
@@ -45,17 +52,23 @@ public class detailCompte implements Serializable {
         return compte;
     }
 
-    
     public String update() {
         comptebancaireManager.modifieCompte(compte);
-        return "listeComptes";
+        return "listeComptes?faces-redirect=true";
+    }
+
+    public String delete() {
+        comptebancaireManager.delete(compte);
+        return "listeComptes?faces-redirect=true";
     }
 
     public void loadCompte() {
         this.compte = comptebancaireManager.findById(idCompte);
     }
+    public void loadCompteDelete() {
+        this.compte = comptebancaireManager.findById(selectedItemId);
+    }
 
-   
     /**
      * Creates a new instance of detailCompte
      */

@@ -87,5 +87,11 @@ public class GestionnaireCompte {
         long result = (long) data;
         return result;
     }
+    
+      @Transactional
+    public void delete(Compte c){
+        //em.remove(c);
+         em.remove(em.merge(c));
+    }
 
 }
