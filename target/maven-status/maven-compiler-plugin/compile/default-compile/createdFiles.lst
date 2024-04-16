@@ -2,6 +2,6 @@ mg/antoenjara/tpbanque/resources/JakartaEE10Resource.class
 mg/antoenjara/tpbanque/service/GestionnaireCompte.class
 mg/antoenjara/tpbanque/config/ConfigJSF.class
 mg/antoenjara/tpbanque/jsf/ListeComptes.class
+mg/antoenjara/tpbanque/config/ConfigCompteJSF.class
 mg/antoenjara/tpbanque/entity/Compte.class
-mg/antoenjara/tpbanque/config/InitBean.class
 mg/antoenjara/tpbanque/JakartaRestConfiguration.class
