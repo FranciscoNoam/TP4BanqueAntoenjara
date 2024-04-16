@@ -79,7 +79,7 @@ public class Virement implements Serializable {
         return this.compteCrediter;
     }
 
-    public boolean validationTransfer() {
+    public boolean validationTransfer(Compte compteDebiter,Compte compteCrediter) {
 
         /*return debiter != null && debiter > 0
                 && crediter != null && crediter > 0 && montant > 0; */
@@ -107,7 +107,7 @@ public class Virement implements Serializable {
         Compte compteCrediter = comptebancaireManager.findById(crediter);
         Compte compteDebiter = comptebancaireManager.findById(debiter);
 
-        boolean error = this.validationTransfer();
+        boolean error = this.validationTransfer(compteDebiter,compteCrediter);
 
         if (error) {
             return null;
