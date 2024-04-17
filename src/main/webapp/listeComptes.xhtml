@@ -21,10 +21,11 @@
 
                     <p:dataTable value="#{listeComptes.allComptes}" var="item" 
                                  emptyMessage="Aucun Compte avec ce critère"
+                                  widgetVar="listeCompteTable"
                                  paginator="true" rows="10" rowsPerPageTemplate="2,4,8,10"
                                  paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                                  >
-                        <p:column width="auto"  sortBy="#{item.id}">
+                        <p:column width="auto" >
                             <f:facet name="header">
                                 <h:outputText value="Id"/>
                             </f:facet>
@@ -35,13 +36,13 @@
                         </p:column>
 
 
-                        <p:column width="auto" filterBy="#{item.nom}" sortBy="#{item.nom}">
+                        <p:column width="auto" filterBy="#{item.nom}">
                             <f:facet name="header">
                                 <h:outputText value="Nom"/>
                             </f:facet>
                             <h:outputText value="#{item.nom}"/>
                         </p:column>
-                        <p:column style="text-align:right;" width="auto" filterBy="#{item.solde}" filterFunction="#{listeComptes.filterBySolde}" sortBy="#{item.solde}">
+                        <p:column style="text-align:right;" width="auto" filterBy="#{item.solde}" filterFunction="#{listeComptes.filterBySolde}">
                             <f:facet name="header">
                                 <h:outputText value="Solde"/>
                             </f:facet>
