@@ -19,17 +19,17 @@
             
            
             <ui:define name="top">
-                Détails du compte
+                <h2> Détails du compte </h2>
             </ui:define>
 
             <ui:define name="content">
                 <h:form rendered='#{detailCompte.selectedItemId != null}'> 
-                <h1><h:outputText value="Voulez vous vraiment supprimez #{detailCompte.compte.nom} ?"/></h1>
+                <h3><h:outputText value="Voulez vous vraiment supprimez #{detailCompte.compte.nom} ?"/></h3>
                 <h:panelGrid columns="2">
                    
                     <h:commandButton id="delete" value="Oui" action="#{detailCompte.delete}"/>
                 </h:panelGrid>
-                <h:messages/>
+                <h:messages class="text-danger"/>
             </h:form>
             <h:button id="back" value="Annuler" outcome="listeComptes"/>
             <h:outputText value="Aucun Compte avec l'id #{detailCompte.selectedItemId} !" rendered='#{detailCompte.selectedItemId == null}'/>

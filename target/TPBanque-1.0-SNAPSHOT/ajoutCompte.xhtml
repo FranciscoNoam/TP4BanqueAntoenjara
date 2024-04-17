@@ -9,23 +9,23 @@
         <ui:composition template="./WEB-INF/templates/template_defaut.xhtml">
 
             <ui:define name="top">
-                Ajouter un nouveau compte
+                <h2> Ajouter un nouveau compte </h2>
             </ui:define>
 
             <ui:define name="content">
                 <h:form id="form"> 
                     <h:panelGrid columns="3">
-                        <h:outputLabel value="nom:" for="nom" />
+                        <h:outputLabel value="Nom:" for="nom" />
                         <h:inputText id="nom" value="#{ajoutCompte.nom}" title="Nom" required="true" converterMessage="Le nom est obligatoire" />
-                        <h:message for="nom"/>
+                        <h:message class="text-danger" for="nom"/>
 
-                        <h:outputLabel value="solde" for="solde" />
+                        <h:outputLabel value="Solde:" for="solde" />
                         <h:inputText id="solde" value="#{ajoutCompte.solde}" title="Solde" required="true" converterMessage="Solde est un nombre entier"/>
-                        <h:message for="solde"/>
+                        <h:message class="text-danger" for="solde"/>
 
                         <h:commandButton id="virement" value="Enregistrer" action="#{ajoutCompte.create}"/>
                     </h:panelGrid>
-                    <h:messages/>
+                    <h:messages class="text-danger"/>
                 </h:form>
             </ui:define>
 

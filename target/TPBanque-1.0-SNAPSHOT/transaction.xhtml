@@ -17,11 +17,11 @@
             </ui:define>
 
             <ui:define name="top">
-                Retrait / Versement de solde
+                <h2> Retrait / Versement de solde </h2>
             </ui:define>
 
             <ui:define name="content">
-                <h1>#{transaction.compte.nom}</h1>
+                <h3>#{transaction.compte.nom}</h3>
                 <p>Solde : #{transaction.compte.solde}</p>
                 <h:form id="form">
                     <h:panelGrid columns="3">
@@ -37,11 +37,11 @@
                         <h:inputText id="montant"  value="#{transaction.solde}"
                                      required="true"
                                      converterMessage="Le Solde doit être un entier"/>
-                        <h:message for="montant"/>
+                        <h:message  class="text-danger" for="montant"/>
                     </h:panelGrid>
-                    <h:commandButton value="Valider" action="#{transaction.mouvement()}" />
+                    <h:commandButton  class="text-danger" value="Valider" action="#{transaction.mouvement()}" />
                 </h:form>
-                <h:messages/>
+                <h:messages  class="text-danger"/>
             </ui:define>
 
         </ui:composition>

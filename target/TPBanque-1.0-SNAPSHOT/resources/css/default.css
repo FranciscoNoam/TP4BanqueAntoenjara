@@ -38,3 +38,7 @@ a:link:hover, a:visited:hover  {
 /*td {
   border-width: 1px !important;
 }*/
+
+.text-danger{
+    color:red;
+}

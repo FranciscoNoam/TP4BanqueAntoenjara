@@ -20,18 +20,18 @@
            
 
             <ui:define name="top">
-                Détails du compte
+                <h2> Détails du compte </h2>
             </ui:define>
 
             <ui:define name="content">
                 <h:form rendered='#{detailCompte.idCompte != null}'> 
-                    <h1><h:outputText value="Update nom du compte"/></h1>
+                    <h3><h:outputText value="Update nom du compte"/></h3>
                     <h:panelGrid columns="2">
                         <h:outputLabel value="Nom:" for="nom" />
                         <h:inputText id="nom" value="#{detailCompte.compte.nom}" title="Nom" />
                         <h:commandButton id="update" value="Enregistrer" action="#{detailCompte.update}"/>
                     </h:panelGrid>
-                    <h:messages/>
+                    <h:messages  class="text-danger"/>
                 </h:form>
             <h:button id="back" value="Revenir à la liste" outcome="listeComptes"/>
             <h:outputText value="Aucun Compte avec l'id #{detailCompte.idCompte} !" rendered='#{detailCompte.idCompte == null}'/>

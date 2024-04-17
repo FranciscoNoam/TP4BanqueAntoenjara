@@ -12,7 +12,7 @@
         <ui:composition template="./WEB-INF/templates/template_defaut.xhtml">
 
             <ui:define name="top">
-                Liste des comptes
+                <h2> Liste des comptes </h2>
             </ui:define>
 
             <ui:define name="content">
@@ -25,7 +25,7 @@
                                  paginator="true" rows="10" rowsPerPageTemplate="2,4,8,10"
                                  paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                                  >
-                        <p:column width="auto" >
+                        <p:column width="auto" sortBy="#{item.id}">
                             <f:facet name="header">
                                 <h:outputText value="Id"/>
                             </f:facet>
@@ -36,13 +36,13 @@
                         </p:column>
 
 
-                        <p:column width="auto" filterBy="#{item.nom}">
+                        <p:column width="auto" filterBy="#{item.nom}" sortBy="#{item.nom}">
                             <f:facet name="header">
                                 <h:outputText value="Nom"/>
                             </f:facet>
                             <h:outputText value="#{item.nom}"/>
                         </p:column>
-                        <p:column style="text-align:right;" width="auto" filterBy="#{item.solde}" filterFunction="#{listeComptes.filterBySolde}">
+                        <p:column style="text-align:right;" width="auto" sortBy="#{item.solde}" filterBy="#{item.solde}" filterFunction="#{listeComptes.filterBySolde}">
                             <f:facet name="header">
                                 <h:outputText value="Solde"/>
                             </f:facet>

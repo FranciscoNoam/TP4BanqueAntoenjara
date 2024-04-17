@@ -9,28 +9,28 @@
         <ui:composition template="./WEB-INF/templates/template_defaut.xhtml">
 
             <ui:define name="top">
-                Passer un virement
+                <h2> Passer un virement </h2>
             </ui:define>
 
             <ui:define name="content">
                 <h:form id="form"> 
-                    <h1><h:outputText value="Saisissez ID du Créditeur"/></h1>
+                    <h3><h:outputText value="Saisissez ID du Créditeur et du Débiteur"/></h3>
                     <h:panelGrid columns="3">
                         <h:outputLabel value="debiter:" for="debiter" />
                         <h:inputText id="debiter" value="#{virement.debiter}" title="Débiteur" required="true" converterMessage="L'id est un nombre entier" />
-                        <h:message for="debiter"/>
+                        <h:message  class="text-danger" for="debiter"/>
                         
                         <h:outputLabel value="crediter:" for="crediter" />
                         <h:inputText id="crediter" value="#{virement.crediter}" title="Créditeur" required="true" converterMessage="L'id est un nombre entier"/>
-                         <h:message for="crediter"/>
+                         <h:message  class="text-danger" for="crediter"/>
 
                         <h:outputLabel value="montant:" for="montant" />
                         <h:inputText id="montant" value="#{virement.montant}" title="Montant" required="true" converterMessage="Montant est un nombre entier"/>
-                         <h:message for="montant"/>
+                         <h:message  class="text-danger" for="montant"/>
 
-                        <h:commandButton id="virement" value="Valider le virement" action="#{virement.virementSolde}"/>·
+                        <h:commandButton id="virement" value="Valider le virement" action="#{virement.virementSolde}"/>
                     </h:panelGrid>
-                    <h:messages/>
+                    <h:messages  class="text-danger"/>
                 </h:form>
             </ui:define>
 
