@@ -58,17 +58,29 @@ public class GestionnaireCompte {
         return liste;
     }
 
-    public Compte findById(Long idCompte) {
-    String requete = "SELECT c FROM Compte c" +" WHERE c.id= :compte";
-    TypedQuery<Compte> query = em.createQuery(requete, Compte.class);
-    query.setParameter("compte", idCompte);
-    try {
-        Compte data =  query.getSingleResult();
-        return data;
-    } catch (NoResultException e) {
-        return null;
+    public Compte findByName(String nom) {
+        String requete = "SELECT c FROM Compte c" + " WHERE UPPER(c.nom) = UPPER(:nom)";
+        TypedQuery<Compte> query = em.createQuery(requete, Compte.class);
+        query.setParameter("nom", nom);
+        try {
+            Compte data = query.getSingleResult();
+            return data;
+        } catch (NoResultException e) {
+            return null;
+        }
     }
-}
+
+    public Compte findById(Long idCompte) {
+        String requete = "SELECT c FROM Compte c" + " WHERE c.id= :compte";
+        TypedQuery<Compte> query = em.createQuery(requete, Compte.class);
+        query.setParameter("compte", idCompte);
+        try {
+            Compte data = query.getSingleResult();
+            return data;
+        } catch (NoResultException e) {
+            return null;
+        }
+    }
 
     @Transactional
     public void creerCompte(Compte c) {
@@ -87,18 +99,18 @@ public class GestionnaireCompte {
         long result = (long) data;
         return result;
     }
-    
-      @Transactional
-    public void delete(Compte c){
+
+    @Transactional
+    public void delete(Compte c) {
         //em.remove(c);
-         em.remove(em.merge(c));
+        em.remove(em.merge(c));
     }
-    
-     @Transactional
+
+    @Transactional
     public void transfert(Compte debiter, Compte crediter, int montant) {
         debiter.retirer(montant);
         crediter.deposer(montant);
-        
+
         this.modifieCompte(debiter);
         this.modifieCompte(crediter);
     }

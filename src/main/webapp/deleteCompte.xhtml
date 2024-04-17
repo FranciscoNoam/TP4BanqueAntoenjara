@@ -16,23 +16,25 @@
 
                 </f:metadata>
             </ui:define>
-            
-           
+
+
             <ui:define name="top">
-                <h2> Détails du compte </h2>
+                <h2> <h:outputText value="Suppression de la compte '#{detailCompte.compte.nom}'" /></h2>
             </ui:define>
 
             <ui:define name="content">
                 <h:form rendered='#{detailCompte.selectedItemId != null}'> 
-                <h3><h:outputText value="Voulez vous vraiment supprimez #{detailCompte.compte.nom} ?"/></h3>
-                <h:panelGrid columns="2">
-                   
-                    <h:commandButton id="delete" value="Oui" action="#{detailCompte.delete}"/>
-                </h:panelGrid>
-                <h:messages class="text-danger"/>
-            </h:form>
-            <h:button id="back" value="Annuler" outcome="listeComptes"/>
-            <h:outputText value="Aucun Compte avec l'id #{detailCompte.selectedItemId} !" rendered='#{detailCompte.selectedItemId == null}'/>
+                    <h3><h:outputText value="Voulez vous vraiment supprimez '#{detailCompte.compte.nom}' ?"/></h3>
+                    <h:panelGrid columns="2">
+
+                        <h:panelGrid columns="2" >
+                            <h:commandButton class="btn-save" id="delete" value="Oui" action="#{detailCompte.delete}"/>
+                            <h:button class="btn-cancel" id="back" value="Annuler" outcome="listeComptes"/>
+                        </h:panelGrid>
+                    </h:panelGrid>
+                    <h:messages class="text-danger"/>
+                </h:form>
+                <h:outputText value="Aucun Compte avec l'id #{detailCompte.selectedItemId} !" rendered='#{detailCompte.selectedItemId == null}'/>
 
             </ui:define>
 

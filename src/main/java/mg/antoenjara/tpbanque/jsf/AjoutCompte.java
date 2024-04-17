@@ -5,7 +5,6 @@
 package mg.antoenjara.tpbanque.jsf;
 
 import jakarta.inject.Named;
-import jakarta.enterprise.context.Dependent;
 import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Inject;
 import java.io.Serializable;
@@ -71,15 +70,21 @@ public class AjoutCompte implements Serializable{
     
     
     public String create(){
-        Compte c = compteManager.findById(idCompte);
         
-        if(c!=null){
-            Util.messageErreur("Compte bancaire avec nom "+nom+" existe dejà !", "Compte bancaire existant !", "form:nom");
+         if(nom==null  || nom==""){
+            Util.messageErreur("Le nom doit imperativement contenir au moins une caractère valide !", "Nom est incorect ! ", "form:nom");
+            return null;
+        }
+         
+        if(solde<=0){
+            Util.messageErreur("Le solde doit imperativement être superieur à 1 !", "Solde bancaire incorect ! ", "form:solde");
             return null;
         }
         
-        if(solde<=0){
-            Util.messageErreur("Le solde doit imperativement être superieur à 1 !", "Solde bancaire incorect ! ", "form:solde");
+        Compte c = compteManager.findByName(nom);
+        
+        if(c!=null){
+            Util.messageErreur("Le compte bancaire avec le Nom '"+nom+"' existe dejà !", "Compte bancaire existant !", "form:nom");
             return null;
         }
         c = new Compte(nom , solde);

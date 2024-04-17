@@ -31,9 +31,9 @@ a:link:hover, a:visited:hover  {
 .ui-datatable {  display: table; }
 .ui-datatable table { table-layout: auto !important; }
 #content {
-    position: relative;
-    background-color: #ffffff;
-   /* padding: 5px; */
+    /*position: relative; */
+    background-color: #ffffff; 
+    padding: 5px; 
 }
 /*td {
   border-width: 1px !important;
@@ -47,4 +47,31 @@ a:link:hover, a:visited:hover  {
     display: flex;
     align-items: center;
     justify-content: space-between;
+}
+.input{
+        width: 200px;
+    height: 37px;
+    border: 1px solid #066fab;
+    padding: 10px;
+}
+
+.position-btn{
+    display:flex;
+    justify-content:center;
+}
+
+.btn-save{
+    background-color: #066fab;
+    width: auto;
+    color: white;
+    border: 0px;
+    padding: 6px;
+}
+
+.btn-cancel{
+    background-color: #ff0000e0;
+    width: auto;
+    color: white;
+    border: 0px;
+    padding: 6px;
 }

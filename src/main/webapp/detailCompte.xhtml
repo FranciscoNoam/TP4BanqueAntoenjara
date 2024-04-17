@@ -16,25 +16,31 @@
 
                 </f:metadata>
             </ui:define>
-            
-           
+
+
 
             <ui:define name="top">
-                <h2> Détails du compte </h2>
+                <h2> <h:outputText value="Détails du compte '#{detailCompte.compte.nom}'" /> </h2>
             </ui:define>
 
             <ui:define name="content">
                 <h:form rendered='#{detailCompte.idCompte != null}'> 
-                    <h3><h:outputText value="Update nom du compte"/></h3>
-                    <h:panelGrid columns="2">
+                    <h3><h:outputText value="Modifier le compte"/></h3>
+                    <h:panelGrid columns="3">
                         <h:outputLabel value="Nom:" for="nom" />
-                        <h:inputText id="nom" value="#{detailCompte.compte.nom}" title="Nom" />
-                        <h:commandButton id="update" value="Enregistrer" action="#{detailCompte.update}"/>
+                        <h:inputText class="input" id="nom" value="#{detailCompte.compte.nom}" title="Nom" required="true" converterMessage="Le nom est obligatoire"/>
+                        <h:message class="text-danger" for="nom"/>
+
+                        <h:panelGrid columns="2" >
+                            <h:commandButton class="btn-save"  id="update" value="Enregistrer" action="#{detailCompte.update}"/>
+                            <h:button  class="btn-save" id="back" value="Revenir à la liste" outcome="listeComptes"/>
+                        </h:panelGrid>
                     </h:panelGrid>
+                  
                     <h:messages  class="text-danger"/>
                 </h:form>
-            <h:button id="back" value="Revenir à la liste" outcome="listeComptes"/>
-            <h:outputText value="Aucun Compte avec l'id #{detailCompte.idCompte} !" rendered='#{detailCompte.idCompte == null}'/>
+
+                <h:outputText value="Aucun Compte avec l'id #{detailCompte.idCompte} !" rendered='#{detailCompte.idCompte == null}'/>
 
             </ui:define>
 

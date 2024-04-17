@@ -79,10 +79,8 @@ public class Virement implements Serializable {
         return this.compteCrediter;
     }
 
-    public boolean validationTransfer(Compte compteDebiter,Compte compteCrediter) {
+    public boolean validationTransfer(Compte compteDebiter, Compte compteCrediter) {
 
-        /*return debiter != null && debiter > 0
-                && crediter != null && crediter > 0 && montant > 0; */
         boolean erreur = false;
         if (compteDebiter == null || compteCrediter == null) {
 
@@ -104,32 +102,34 @@ public class Virement implements Serializable {
     }
 
     public String virementSolde() {
+
+        if (debiter == null || debiter <= 0) {
+            Util.messageErreur("L'ID débiteur est invalid", "Veuillez saisir un ID du débiteur valide", "form:debiter");
+            return null;
+        }
+
+        if (crediter == null || crediter <= 0) {
+            Util.messageErreur("L'ID créditeur est invalid", "Veuillez saisir un ID du créditeur valide", "form:crediter");
+            return null;
+        }
+        if (montant <= 0) {
+            Util.messageErreur("Le Montant doit imperativement être superieur à 0 !", "Le Montant est invalide ! ", "form:montant");
+            return null;
+        }
         Compte compteCrediter = comptebancaireManager.findById(crediter);
         Compte compteDebiter = comptebancaireManager.findById(debiter);
 
-        boolean error = this.validationTransfer(compteDebiter,compteCrediter);
+        boolean error = this.validationTransfer(compteDebiter, compteCrediter);
 
         if (error) {
             return null;
+        } else {
+            comptebancaireManager.transfert(compteDebiter, compteCrediter, montant);
+
+            Util.addFlashInfoMessage("Transfert de " + montant + " effectué de " + compteDebiter.getNom() + " vers " + compteCrediter.getNom());
+            return "listeComptes?faces-redirect=true";
         }
 
-        comptebancaireManager.transfert(compteDebiter, compteCrediter, montant);
-
-        Util.addFlashInfoMessage("Transfert de " + montant + " effectué de " + compteDebiter.getNom() + " vers " + compteCrediter.getNom());
-        return "listeComptes?faces-redirect=true";
     }
 
-    /*public String virementSolde() {
-        if (validationTransfer()) {
-            Compte compteCrediter = comptebancaireManager.findById(crediter);
-            Compte compteDebiter = comptebancaireManager.findById(debiter);
-            comptebancaireManager.transfert(compteDebiter,compteCrediter, montant);
-            return "listeComptes?faces-redirect=true";
-        } else {
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erreur", "Virement invalide"));
-            return null;
-        }
-        
-        
-    }*/
 }

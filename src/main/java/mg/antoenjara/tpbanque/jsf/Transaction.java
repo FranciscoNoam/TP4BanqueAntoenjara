@@ -11,20 +11,21 @@ import java.io.Serializable;
 import mg.antoenjara.tpbanque.entity.Compte;
 import mg.antoenjara.tpbanque.service.GestionnaireCompte;
 import mg.antoenjara.tpbanque.jsf.util.Util;
+
 /**
  *
  * @author francisco
  */
 @Named(value = "transaction")
 @ViewScoped
-public class Transaction implements Serializable{
+public class Transaction implements Serializable {
 
     /**
      * Creates a new instance of Transaction
      */
     public Transaction() {
     }
-    
+
     private long idCompte;
     private int solde;
     private Compte compte;
@@ -74,6 +75,7 @@ public class Transaction implements Serializable{
         if (isError) {
             return null;
         }
+       
         switch (transaction) {
             case "retrait":
                 compte.retirer(solde);
@@ -82,7 +84,7 @@ public class Transaction implements Serializable{
                 compte.deposer(solde);
                 break;
             default:
-                Util.messageErreur("Type transaction non definit !", "Type transaction non definit !", "form:mouv");
+                Util.messageErreur("Type transaction non definit !", "Type transaction non definit !", "form:transaction");
                 return null;
         }
         gc.modifieCompte(compte);
@@ -92,18 +94,39 @@ public class Transaction implements Serializable{
 
     public boolean checkTransaction() {
         boolean error = false;
-        if(transaction==null){
-            Util.messageErreur("Type transaction non definit !", "Type mouvement non definit !", "form:transaction");
+        if (solde <= 1) {
+            Util.messageErreur("Le Montant doit être superieur à 0 !", "Montant est invalid !", "form:solde");
             error = true;
-        }else if (solde <= 0) {
-            Util.messageErreur("Transaction de la transaction doit être superieur à 0 !", "Solde incorect !", "form:solde");
+        } else if (transaction == null) {
+            Util.messageErreur("Type transaction non definit !", "Type transaction non definit !", "form:transaction");
             error = true;
         } else if (this.compte.getSolde() < solde) {
             if (transaction.equals("retrait")) {
-                Util.messageErreur("Solde à retirer insuffisant !", "Solde insuffisant !", "form:solde");
+                Util.messageErreur("Montant à retirer insuffisant !", "Montant insuffisant !", "form:solde");
                 error = true;
             }
         }
         return error;
     }
+    
+    /*
+    public String mouvement() {
+        boolean isError = this.checkTransaction();
+        if (isError) {
+            return null;
+        }
+        if (transaction == "retrait") {
+            compte.retirer(solde);
+        } else if (transaction == "versement") {
+            compte.deposer(solde);
+        } else {
+            Util.messageErreur("Type transaction non definit !", "Type transaction non definit !", "form:transaction");
+            return null;
+        }
+        
+        gc.modifieCompte(compte);
+        Util.addFlashInfoMessage(transaction + " de " + solde + " effectué du compte de " + this.compte.getNom());
+        return "listeComptes?faces-redirect=true";
+    }
+    */
 }

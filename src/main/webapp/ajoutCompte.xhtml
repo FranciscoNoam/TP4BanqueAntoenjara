@@ -14,16 +14,17 @@
 
             <ui:define name="content">
                 <h:form id="form"> 
+                     <h3> Ajouter un nouveau compte </h3>
                     <h:panelGrid columns="3">
                         <h:outputLabel value="Nom:" for="nom" />
-                        <h:inputText id="nom" value="#{ajoutCompte.nom}" title="Nom" required="true" converterMessage="Le nom est obligatoire" />
+                        <h:inputText class="input" id="nom" value="#{ajoutCompte.nom}" title="Nom" required="true" converterMessage="Le nom est obligatoire" />
                         <h:message class="text-danger" for="nom"/>
 
                         <h:outputLabel value="Solde:" for="solde" />
-                        <h:inputText id="solde" value="#{ajoutCompte.solde}" title="Solde" required="true" converterMessage="Solde est un nombre entier"/>
+                        <h:inputText class="input" id="solde" value="#{ajoutCompte.solde}" title="Solde" required="true" converterMessage="Le solde doit être un nombre entier"/>
                         <h:message class="text-danger" for="solde"/>
 
-                        <h:commandButton id="virement" value="Enregistrer" action="#{ajoutCompte.create}"/>
+                        <h:commandButton class="btn-save" id="virement" value="Enregistrer" action="#{ajoutCompte.create}"/>
                     </h:panelGrid>
                     <h:messages class="text-danger"/>
                 </h:form>

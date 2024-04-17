@@ -14,21 +14,21 @@
 
             <ui:define name="content">
                 <h:form id="form"> 
-                    <h3><h:outputText value="Saisissez ID du Créditeur et du Débiteur"/></h3>
+                    <h3><h:outputText value="Saisissez ID du Débiteur et du Créditeur"/></h3>
                     <h:panelGrid columns="3">
-                        <h:outputLabel value="debiter:" for="debiter" />
-                        <h:inputText id="debiter" value="#{virement.debiter}" title="Débiteur" required="true" converterMessage="L'id est un nombre entier" />
+                        <h:outputLabel value="Débiter:" for="debiter" />
+                        <h:inputText class="input" id="debiter" value="#{virement.debiter}" title="Débiteur" required="true" converterMessage="L'ID du débiteur doit être un nombre entier" />
                         <h:message  class="text-danger" for="debiter"/>
                         
-                        <h:outputLabel value="crediter:" for="crediter" />
-                        <h:inputText id="crediter" value="#{virement.crediter}" title="Créditeur" required="true" converterMessage="L'id est un nombre entier"/>
+                        <h:outputLabel value="Créditer:" for="crediter" />
+                        <h:inputText class="input" id="crediter" value="#{virement.crediter}" title="Créditeur" required="true" converterMessage="L'id  du créditeur doit être un nombre entier"/>
                          <h:message  class="text-danger" for="crediter"/>
 
-                        <h:outputLabel value="montant:" for="montant" />
-                        <h:inputText id="montant" value="#{virement.montant}" title="Montant" required="true" converterMessage="Montant est un nombre entier"/>
+                        <h:outputLabel value="Montant:" for="montant" />
+                        <h:inputText class="input" id="montant" value="#{virement.montant}" title="Montant" required="true" converterMessage="Montant est un nombre entier et doit être,supérieur à 0"/>
                          <h:message  class="text-danger" for="montant"/>
 
-                        <h:commandButton id="virement" value="Valider le virement" action="#{virement.virementSolde}"/>
+                         <h:commandButton class="btn-save" id="virement" value="Valider le virement" action="#{virement.virementSolde}"/>
                     </h:panelGrid>
                     <h:messages  class="text-danger"/>
                 </h:form>
