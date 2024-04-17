@@ -94,7 +94,7 @@ public class Transaction implements Serializable {
 
     public boolean checkTransaction() {
         boolean error = false;
-        if (solde <= 1) {
+        if (solde <= 0) {
             Util.messageErreur("Le Montant doit être superieur à 0 !", "Montant est invalid !", "form:solde");
             error = true;
         } else if (transaction == null) {
