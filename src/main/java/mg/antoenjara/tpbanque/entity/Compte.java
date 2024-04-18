@@ -11,6 +11,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.Version;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -29,9 +30,12 @@ public class Compte implements Serializable {
 
     private String nom;
     private int solde;
-    
-    @OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)  
-    private List<OperationBancaire> operations = new ArrayList<>(); 
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private List<OperationBancaire> operations = new ArrayList<>();
+
+    @Version
+    private int version;
 
     public Long getId() {
         return id;
@@ -52,10 +56,10 @@ public class Compte implements Serializable {
     public int getSolde() {
         return this.solde;
     }
-    
-    public List<OperationBancaire> getOperations() {  
-      return operations;  
-    } 
+
+    public List<OperationBancaire> getOperations() {
+        return operations;
+    }
 
     @Override
     public int hashCode() {
@@ -92,7 +96,6 @@ public class Compte implements Serializable {
         operations.add(new OperationBancaire("Création du compte", solde));
     }
 
-   
     public void deposer(int montant) {
         solde += montant;
         operations.add(new OperationBancaire("Crédit", montant));
@@ -101,7 +104,7 @@ public class Compte implements Serializable {
     public void retirer(int montant) {
         if (montant < solde) {
             solde -= montant;
-            operations.add(new OperationBancaire("Débit", (montant*-1)));
+            operations.add(new OperationBancaire("Débit", (montant * -1)));
         } else {
             solde = 0;
         }
