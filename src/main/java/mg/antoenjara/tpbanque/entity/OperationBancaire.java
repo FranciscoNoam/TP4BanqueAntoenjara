@@ -10,6 +10,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 /**
  *
@@ -36,6 +37,9 @@ public class OperationBancaire implements Serializable {
     
     public LocalDateTime getDateOperation(){
         return this.dateOperation;
+    }
+    public int getMontant(){
+        return this.montant;
     }
 
     public void setId(Long id) {
@@ -72,6 +76,12 @@ public class OperationBancaire implements Serializable {
     public String toString() {
         return "mg.antoenjara.tpbanque.entity.OperationBancaire[ id=" + id + " ]";
     }
+    
+    public String getDateFormat() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        return formatter.format(dateOperation);
+    }
+    
     
      public OperationBancaire() { }
                     

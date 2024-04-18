@@ -13,6 +13,7 @@ import jakarta.persistence.TypedQuery;
 import jakarta.transaction.Transactional;
 import java.util.List;
 import mg.antoenjara.tpbanque.entity.Compte;
+import mg.antoenjara.tpbanque.entity.OperationBancaire;
 
 /**
  *
@@ -56,6 +57,8 @@ public class GestionnaireCompte {
         List<Compte> liste = query.getResultList();
         return liste;
     }
+    
+   
 
     public Compte findByName(String nom) {
         String requete = "SELECT c FROM Compte c" + " WHERE UPPER(c.nom) = UPPER(:nom)";

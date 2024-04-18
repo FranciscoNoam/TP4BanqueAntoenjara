@@ -21,7 +21,7 @@
 
                     <p:dataTable value="#{listeComptes.allComptes}" var="item" 
                                  emptyMessage="Aucun Compte avec ce critère"
-                                  widgetVar="listeCompteTable"
+                                 widgetVar="listeCompteTable"
                                  paginator="true" rows="10" rowsPerPageTemplate="2,4,8,10"
                                  paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                                  >
@@ -66,13 +66,15 @@
                             <f:facet name="header">
                                 <h:outputText escape="false" value="Historique&lt;br/>opérations"/>
                             </f:facet>
-                            <h:link outcome="detailCompte?idCompte=#{item.id}&amp;faces-redirect=true" value="Détails"/>
+                            <h:link outcome="operations" value="Détails">
+                                <f:param name="idCompte" value="#{item.id}" />
+                            </h:link>
                         </p:column>
                     </p:dataTable>
 
                 </h:form>
 
-                <h:messages/>
+                <h:messages class="text-danger"/>
 
             </ui:define>
 

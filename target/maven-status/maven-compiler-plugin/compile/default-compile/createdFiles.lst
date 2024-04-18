@@ -9,5 +9,6 @@ mg/antoenjara/tpbanque/resources/JakartaEE10Resource.class
 mg/antoenjara/tpbanque/config/ConfigCompteJSF.class
 mg/antoenjara/tpbanque/entity/Compte.class
 mg/antoenjara/tpbanque/jsf/util/Util.class
+mg/antoenjara/tpbanque/jsf/Operation.class
 mg/antoenjara/tpbanque/jsf/detailCompte.class
 mg/antoenjara/tpbanque/jsf/Virement.class

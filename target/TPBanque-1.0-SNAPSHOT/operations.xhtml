@@ -1,0 +1,71 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="jakarta.faces.core"
+      xmlns:h="jakarta.faces.html"
+      xmlns:p="http://primefaces.org/ui">
+
+    <body>
+
+        <ui:composition template="./WEB-INF/templates/template_defaut.xhtml">
+
+            <ui:define name="metadata">
+                 <f:metadata>
+                <f:viewParam name="idCompte" value="#{operation.idCompte}"/>
+                <f:viewAction action="#{operation.load}"/>
+                 </f:metadata>
+            </ui:define>
+
+            <ui:define name="top">
+                <h:outputText value="Historique des opérations sur le compte de '#{operation.compte.nom}'"/>
+            </ui:define>
+
+            <ui:define name="content">
+                <h:form>
+                    <h3>Historique des opérations sur le compte #{operation.compte.nom}</h3>
+                    <p:dataTable value="#{operation.operations}" var="item" 
+                                 emptyMessage="Aucun Opération de #{listeOperation.compte.nom} avec ce critère"
+                                 widgetVar="listeOperationCompteTable"
+                                 paginator="true" rows="10" rowsPerPageTemplate="2,4,8,10"
+                                 paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                 >
+                        <p:column width="auto" sortBy="#{item.id}">
+                            <f:facet name="header">
+                                <h:outputText value="Id"/>
+                            </f:facet>
+                             <h:outputText value="#{item.id}"/>
+                        </p:column>
+                        <p:column width="auto" filterBy="#{item.description}" sortBy="#{item.description}">
+                            <f:facet name="header">
+                                <h:outputText value="Description"/>
+                            </f:facet>
+                            <h:outputText value="#{item.description}"/>
+                        </p:column>
+                        <p:column style="text-align:right;" width="auto" sortBy="#{item.dateOperation}" filterBy="#{item.dateOperation}" >
+                            <f:facet name="header">
+                                <h:outputText value="Date opération"/>
+                            </f:facet>
+                            <h:outputText value="#{item.dateOperation.toLocalDate().toString()} #{item.dateOperation.toLocalTime().toString()}">
+                                <f:convertNumber pattern="###,###,##0"/>
+                            </h:outputText>
+                        </p:column>
+                        <p:column style="text-align:right;" width="auto" sortBy="#{item.montant}" filterBy="#{item.montant}" >
+                            <f:facet name="header">
+                                <h:outputText value="Montant"/>
+                            </f:facet>
+                            <h:outputText value="#{item.montant}">
+                                <f:convertNumber pattern="###,###,##0"/>
+                            </h:outputText>
+                        </p:column>
+                    </p:dataTable>
+
+                </h:form>
+
+                <h:messages class="text-danger" />
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>
