@@ -4,11 +4,16 @@
  */
 package mg.antoenjara.tpbanque.entity;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -24,6 +29,9 @@ public class Compte implements Serializable {
 
     private String nom;
     private int solde;
+    
+    @OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)  
+    private List<OperationBancaire> operations = new ArrayList<>(); 
 
     public Long getId() {
         return id;
@@ -44,6 +52,10 @@ public class Compte implements Serializable {
     public int getSolde() {
         return this.solde;
     }
+    
+    public List<OperationBancaire> getOperations() {  
+      return operations;  
+    } 
 
     @Override
     public int hashCode() {
