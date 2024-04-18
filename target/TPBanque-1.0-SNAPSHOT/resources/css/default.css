@@ -42,6 +42,9 @@ a:link:hover, a:visited:hover  {
 .text-danger{
     color:red;
 }
+.text-success{
+    color:green;
+}
 .action{
     text-align: right;
     display: flex;
