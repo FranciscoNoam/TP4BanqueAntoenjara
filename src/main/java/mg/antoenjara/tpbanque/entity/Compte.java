@@ -89,16 +89,19 @@ public class Compte implements Serializable {
     public Compte(String nom, int solde) {
         this.nom = nom;
         this.solde = solde;
+        operations.add(new OperationBancaire("Création du compte", solde));
     }
 
    
     public void deposer(int montant) {
         solde += montant;
+        operations.add(new OperationBancaire("Crédit", montant));
     }
 
     public void retirer(int montant) {
         if (montant < solde) {
             solde -= montant;
+            operations.add(new OperationBancaire("Débit", (montant*-1)));
         } else {
             solde = 0;
         }
