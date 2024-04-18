@@ -7,6 +7,7 @@ package mg.antoenjara.tpbanque.jsf;
 import jakarta.inject.Named;
 import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Inject;
+import jakarta.persistence.OptimisticLockException;
 import java.io.Serializable;
 import mg.antoenjara.tpbanque.entity.Compte;
 import mg.antoenjara.tpbanque.service.GestionnaireCompte;
@@ -71,26 +72,34 @@ public class Transaction implements Serializable {
     }
 
     public String mouvement() {
-        boolean isError = this.checkTransaction();
-        if (isError) {
-            return null;
-        }
-       
-        switch (transaction) {
-            case "retrait":
-                compte.retirer(solde);
-                break;
-            case "versement":
-                compte.deposer(solde);
-                break;
-            default:
-                Util.messageErreur("Type transaction non definit !", "Type transaction non definit !", "form:transaction");
+        try {
+            boolean isError = this.checkTransaction();
+            if (isError) {
                 return null;
-        }
-        gc.modifieCompte(compte);
-        Util.addFlashInfoMessage(transaction + " de " + solde + " effectué du compte de " + this.compte.getNom());
-        return "listeComptes?faces-redirect=true";
+            }
+
+            switch (transaction) {
+                case "retrait":
+                    compte.retirer(solde);
+                    break;
+                case "versement":
+                    compte.deposer(solde);
+                    break;
+                default:
+                    Util.messageErreur("Type transaction non definit !", "Type transaction non definit !", "form:transaction");
+                    return null;
+            }
+            gc.modifieCompte(compte);
+            Util.addFlashInfoMessage(transaction + " de " + solde + " effectué du compte de " + this.compte.getNom());
+            return "listeComptes?faces-redirect=true";
+        } catch (OptimisticLockException ex) {
+        Util.messageErreur("Le compte de " + compte.getNom()
+                  + " a été modifié ou supprimé par un autre utilisateur !");
+        return null; // pour rester sur la page s'il y a une exception
     }
+        }
+
+    
 
     public boolean checkTransaction() {
         boolean error = false;
@@ -108,7 +117,7 @@ public class Transaction implements Serializable {
         }
         return error;
     }
-    
+
     /*
     public String mouvement() {
         boolean isError = this.checkTransaction();
@@ -128,5 +137,5 @@ public class Transaction implements Serializable {
         Util.addFlashInfoMessage(transaction + " de " + solde + " effectué du compte de " + this.compte.getNom());
         return "listeComptes?faces-redirect=true";
     }
-    */
+     */
 }
