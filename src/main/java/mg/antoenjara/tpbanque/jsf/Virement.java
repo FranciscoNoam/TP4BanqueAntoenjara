@@ -101,35 +101,32 @@ public class Virement implements Serializable {
         return erreur;
     }
 
+
+    
     public String virementSolde() {
 
-        if (debiter == null || debiter <= 0) {
-            Util.messageErreur("L'ID débiteur est invalid", "Veuillez saisir un ID du débiteur valide", "form:debiter");
-            return null;
+        String url = "virement?faces-redirect=true";
+        if (debiter == null || debiter <= 0  || crediter == null || crediter <= 0) {
+            Util.messageErreur("L'ID débiteur ou ID créditeur est invalid", "Veuillez saisir un ID  valide", "form:debiter");
         }
 
-        if (crediter == null || crediter <= 0) {
-            Util.messageErreur("L'ID créditeur est invalid", "Veuillez saisir un ID du créditeur valide", "form:crediter");
-            return null;
-        }
         if (montant <= 0) {
             Util.messageErreur("Le Montant doit imperativement être superieur à 0 !", "Le Montant est invalide ! ", "form:montant");
-            return null;
         }
         Compte compteCrediter = comptebancaireManager.findById(crediter);
         Compte compteDebiter = comptebancaireManager.findById(debiter);
 
         boolean error = this.validationTransfer(compteDebiter, compteCrediter);
 
-        if (error) {
-            return null;
-        } else {
+        if (!error) {
             comptebancaireManager.transfert(compteDebiter, compteCrediter, montant);
-
             Util.addFlashInfoMessage("Transfert de " + montant + " effectué de " + compteDebiter.getNom() + " vers " + compteCrediter.getNom());
-            return "listeComptes?faces-redirect=true";
+            url= "listeComptes?faces-redirect=true";
         }
-
+        
+        return url;
     }
+    
+    
 
 }

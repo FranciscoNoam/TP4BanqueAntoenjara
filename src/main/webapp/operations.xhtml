@@ -46,6 +46,7 @@
                             <f:facet name="header">
                                 <h:outputText value="Date opération"/>
                             </f:facet>
+                            
                             <h:outputText value="#{item.dateOperation.toLocalDate().toString()} #{item.dateOperation.toLocalTime().toString()}">
                                 <f:convertNumber pattern="###,###,##0"/>
                             </h:outputText>
