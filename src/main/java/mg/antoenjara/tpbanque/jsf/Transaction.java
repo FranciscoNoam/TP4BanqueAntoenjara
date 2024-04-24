@@ -73,6 +73,47 @@ public class Transaction implements Serializable {
 
     public String mouvement() {
         try {
+            
+            if (solde <= 0) {
+                Util.messageErreur("Le Montant doit être superieur à 0 !", "Montant est invalid !", "form:solde");
+                return null;
+            }
+            
+            if (compte.getSolde() < solde) {
+                if (transaction.equals("retrait")) {
+                    Util.messageErreur("Montant à retirer insuffisant !", "Montant insuffisant !", "form:solde");
+                    return null;
+                }
+            }
+
+            switch (transaction) {
+                case "retrait":
+                    compte.retirer(solde);
+                    break;
+                case "versement":
+                    compte.deposer(solde);
+                    break;
+                default:
+                    Util.messageErreur("Type transaction non definit !", "Type transaction non definit !", "form:transaction");
+                    return null;
+            }
+            
+            gc.modifieCompte(compte);
+            Util.addFlashInfoMessage(transaction + " de " + solde + " effectué du compte de " + compte.getNom());
+            
+            return "listeComptes?faces-redirect=true";
+            
+        } catch (OptimisticLockException ex) {
+            
+            Util.messageErreur("Le compte de " + compte.getNom()
+                    + " a été modifié ou supprimé par un autre utilisateur !");
+            return null; // pour rester sur la page s'il y a une exception
+        }
+    }
+
+
+    /* public String mouvement() {
+        try {
             boolean isError = this.checkTransaction();
             if (isError) {
                 return null;
@@ -117,8 +158,8 @@ public class Transaction implements Serializable {
         }
         return error;
     }
-
-    /*
+     */
+ /*
     public String mouvement() {
         boolean isError = this.checkTransaction();
         if (isError) {
