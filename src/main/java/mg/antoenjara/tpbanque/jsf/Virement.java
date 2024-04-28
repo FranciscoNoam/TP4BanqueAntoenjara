@@ -107,7 +107,8 @@ public class Virement implements Serializable {
 
         if (montant <= 0) {
             Util.messageErreur("Le Montant doit imperativement être superieur à 0 !", "Le Montant est invalide ! ", "form:montant");
-            return "virement";
+            //return "virement";
+             return null;
         }
         Compte compteCrediter = comptebancaireManager.findById(crediter);
         Compte compteDebiter = comptebancaireManager.findById(debiter);
@@ -115,7 +116,8 @@ public class Virement implements Serializable {
         boolean error = this.validationTransfer(compteDebiter, compteCrediter);
 
         if (error) {
-             return "virement?faces-redirect=true";
+             //return "virement?faces-redirect=true";
+              return null;
         } else {
             comptebancaireManager.transfert(compteDebiter, compteCrediter, montant);
 
