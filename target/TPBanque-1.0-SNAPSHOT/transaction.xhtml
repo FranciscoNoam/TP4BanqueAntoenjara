@@ -34,8 +34,8 @@
                         <h:message  class="text-danger" for="solde"/>
 
                         <h:outputText value="Type de transaction : "/>
-                        <h:selectOneMenu class="input" id="transaction" value="#{transaction.transaction}">
-                            <f:selectItem itemLabel="Choisissez" itemValue="" />
+                        <h:selectOneMenu class="input" id="transaction" required="true" value="#{transaction.transaction}">
+                            <!--<f:selectItem itemLabel="Choisissez" itemValue="" />-->
                             <f:selectItem itemLabel="Retrait" itemValue="retrait" />
                             <f:selectItem itemLabel="Versement" itemValue="versement" />
                         </h:selectOneMenu>
